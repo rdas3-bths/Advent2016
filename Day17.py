@@ -18,32 +18,32 @@ def open_doors(hash):
     return available_moves
 
 
-def new_location(x, y, all_moves, mv):
-    c, dx, dy = mv
-    return x + dx, y + dy, all_moves + c
+def new_location(row, col, all_moves, mv):
+    direction, row_change, col_change = mv
+    return row + row_change, col + col_change, all_moves + direction
 
 
-def in_bounds(x, y):
-    return x >= 0 and x < 4 and y >= 0 and y < 4
+def in_bounds(row, col):
+    return row >= 0 and row < 4 and col >= 0 and col < 4
 
 
 def traverse_grid(inp, part):
-    start_x = 0
-    start_y = 0
-    unvisited = [ (start_x, start_y, '') ]
+    start_row = 0
+    start_col = 0
+    unvisited = [ (start_row, start_col, '') ]
     longest = 0
     while unvisited:
-        x, y, all_moves = unvisited.pop(0)
+        current_row, current_col, all_moves = unvisited.pop(0)
         for mv in open_doors(get_md5(inp + all_moves)):
-            new_x, new_y, new_all_moves = new_location(x, y, all_moves, mv)
-            if not in_bounds(new_x, new_y):
+            new_row, new_col, new_all_moves = new_location(current_row, current_col, all_moves, mv)
+            if not in_bounds(new_row, new_col):
                 continue
-            if new_x == 3 and new_y == 3:
+            if new_row == 3 and new_col == 3:
                 if part == 1:
                     return new_all_moves
                 longest = len(new_all_moves)
             else:
-                unvisited.append((new_x, new_y, new_all_moves))
+                unvisited.append((new_row, new_col, new_all_moves))
     return longest
 
 
