@@ -2,7 +2,7 @@ from advent_util import get_file_data
 import itertools
 
 part_one_password = "abcdefgh"
-part_two_password="fbgdceah"
+part_two_password = "fbgdceah"
 password = [letter for letter in part_one_password]
 
 
