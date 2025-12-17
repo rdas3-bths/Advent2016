@@ -113,3 +113,7 @@ def main(part_two=False):
 
 if __name__ == "__main__":
     main()
+
+
+# I didn't do any optimization for Part 2. It took about ~30 minutes to finish
+# but I got the right answer!
